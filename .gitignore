@@ -1,4 +1,4 @@
 *.o
 .idea/
-client
-server
+bin/client
+bin/server
