@@ -26,19 +26,19 @@ fd_set readfds;
 
 fd_set testfds;
 
-server_sockfd = socket(AF_INET, SOCK_STREAM, 0);
+int server_sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
-server_address.sin_family = AF_INET; 
+int server_address.sin_family = AF_INET;
 
-server_address.sin_addr.s_addr = htonl(INADDR_ANY); 
+int server_address.sin_addr.s_addr = htonl(INADDR_ANY);
 
-server_address.sin_port = htons(9734); 
+int server_address.sin_port = htons(9734);
 
-server_len = sizeof(server_address); 
+int server_len = sizeof(server_address);
 
-bind(server_sockfd, (struct sockaddr *)&server_address, server_len); 
+int bind(server_sockfd, (struct sockaddr *)&server_address, server_len);
 
-listen(server_sockfd, 5); 
+int listen(server_sockfd, 5);
 
 FD_ZERO(&readfds); 
 

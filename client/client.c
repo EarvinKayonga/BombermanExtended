@@ -1,10 +1,6 @@
-#include "../common/socket_util.h"
-#include "../common/request.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
+#include 	"client.h"
 
-int main(int argc, char **args)
+int 		main(int argc, char **args)
 {
   int socket, i, j, k, id, ret, reading;
   char c;

@@ -1,7 +1,6 @@
 #include 	<unistd.h>
 #include 	"../common/request.h"
 
-
 int 		main(int argc, char **args)
 {
   int socket,
