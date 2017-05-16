@@ -1,4 +1,6 @@
-#ifndef __REQUEST_H__ 
+#include "socket_util.h"
+
+#ifndef __REQUEST_H__
 #define __REQUEST_H__
 
 #define BLOCK_BOMB_1 'b'
@@ -50,4 +52,11 @@ typedef struct	request_s
   char		map[MAP_ROW][MAP_COL];
   client_t	clients[MAX_CLIENTS];
 } request_t;
+
+
+void init_request(request_t *source, char *filename);
+void copy_request(request_t source, request_t *destination);
+void reset_client(client_t *client);
+int set_client(request_t *source, int client);
+
 #endif

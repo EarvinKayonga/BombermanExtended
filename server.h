@@ -4,7 +4,9 @@
 #include <netinet/in.h> 
 #include <sys/time.h> 
 #include <sys/ioctl.h> 
-#include <unistd.h> 
+#include <unistd.h>
+
+#include "request.h"
 
 int server_sockfd;
 
