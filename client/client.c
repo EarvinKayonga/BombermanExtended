@@ -1,5 +1,5 @@
-#include "socket_util.h"
-#include "request.h"
+#include "../common/socket_util.h"
+#include "../common/request.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
