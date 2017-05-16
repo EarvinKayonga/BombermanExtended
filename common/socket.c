@@ -1,29 +1,27 @@
-#include "socket_util.h"
+#include    "socket_util.h"
 
-void die(char *message)
+void        die(char *message)
 {
   perror(message);
   fflush(stdout) ;
   exit(1);
 }
 
-int create_server(char *hostname, int port)
+int         create_server(char *hostname, int port)
 {
-   int sockfd;
-   struct sockaddr_in serv_addr;
-   struct hostent *server;
+   int      sockfd;
+   struct   sockaddr_in serv_addr;
+   struct   hostent *server;
    
    sockfd = socket(AF_INET, SOCK_STREAM, 0);
    
-   if (sockfd < 0) {
+   if (sockfd < 0)
      die("socket()");
-   }
    
    server = gethostbyname(hostname);
    
-   if (server == NULL) {
+   if (server == NULL)
      die("server()");
-   }
    
    bzero((char *) &serv_addr, sizeof(serv_addr));
    serv_addr.sin_family = AF_INET;
@@ -35,29 +33,25 @@ int create_server(char *hostname, int port)
    if (bind(sockfd, (struct sockaddr*) &serv_addr, sizeof(serv_addr)) < 0) {
      die("bind()");
    }
-   
    listen(sockfd, 10);
-   
-   return sockfd;
+   return (sockfd);
 }
 
-int create_client(char *hostname, int port)
+int         create_client(char *hostname, int port)
 {
-   int sockfd;
-   struct sockaddr_in serv_addr;
-   struct hostent *server;
+   int      sockfd;
+   struct   sockaddr_in serv_addr;
+   struct   hostent *server;
    
    sockfd = socket(AF_INET, SOCK_STREAM, 0);
    
-   if (sockfd < 0) {
+   if (sockfd < 0)
      die("socket()");
-   }
    
    server = gethostbyname(hostname);
    
-   if (server == NULL) {
+   if (server == NULL)
      die("server()");
-   }
    
    bzero((char *) &serv_addr, sizeof(serv_addr));
    serv_addr.sin_family = AF_INET;
@@ -65,9 +59,8 @@ int create_client(char *hostname, int port)
 	 (char *)&serv_addr.sin_addr.s_addr,
 	 server->h_length);
    serv_addr.sin_port = htons(port);
-   if (connect(sockfd, (struct sockaddr*) &serv_addr, sizeof(serv_addr)) < 0) {
+   if (connect(sockfd, (struct sockaddr*) &serv_addr, sizeof(serv_addr)) < 0)
      die("connect()");
-   }
    
-   return sockfd;
+   return (sockfd);
 }

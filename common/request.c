@@ -1,19 +1,19 @@
 #include "request.h"
 
-int posx = 1;
+int       posx = 1;
 
-void init_request(request_t *source, char *filename)
+void      init_request(request_t *source, char *filename)
 {
-    int row, col, i;
+    int   row, col, i;
     char c;
     FILE *file;
+
     for (i = 0; i < MAX_CLIENTS; i++)
     {
         source->clients[i].id = -1;
         source->clients[i].posx = -1;
         source->clients[i].posy = -1;
     }
-
 
     file = fopen(filename, "r");
     row = 0;
@@ -38,9 +38,10 @@ void init_request(request_t *source, char *filename)
         die("bad map");
 }
 
-void copy_request(request_t source, request_t *destination)
+void       copy_request(request_t source, request_t *destination)
 {
-    int i, j;
+    int    i, j;
+
     for (i = 0; i < MAP_ROW; i++)
         for (j = 0; j < MAP_COL; j++)
             destination->map[i][j] = source.map[i][j];
@@ -48,9 +49,9 @@ void copy_request(request_t source, request_t *destination)
         destination->clients[i] = source.clients[i];
 }
 
-int set_client(request_t *source, int client)
+int         set_client(request_t *source, int client)
 {
-    int i;
+    int     i;
     for (i = 0; i < MAX_CLIENTS; i++)
         if (source->clients[i].id == -1)
         {
@@ -62,10 +63,10 @@ int set_client(request_t *source, int client)
             source->clients[i].next_direction = NOTHING;
             return i;
         }
-    return -1;
+    return (-1);
 }
 
-void reset_client(client_t *client)
+void        reset_client(client_t *client)
 {
     client->id = -1;
     client->posx = -1;
