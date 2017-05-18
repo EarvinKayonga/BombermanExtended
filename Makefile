@@ -4,12 +4,12 @@ CFLAGS  =   -W -Wall -Werror
 all: client server
 
 client: objcli
-		$(CC) `sdl-config --cflags --libs`  -o bin/client args.o client.o socket.o print.o graphics.o
+		$(CC) `sdl-config --cflags --libs`  -o bin/client *.o
 server: objser
 		$(CC) -o bin/server server.o socket.o request.o
 
 objcli:
-	$(CC) -c client/args.c client/client.c common/socket.c common/print.c client/sdl/graphics.c
+	$(CC) -c client/args.c client/client.c common/socket.c common/print.c client/sdl/*.c
 
 objser:
 	$(CC) -c server/server.c common/socket.c common/request.c
