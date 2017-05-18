@@ -4,7 +4,7 @@ CFLAGS  =   -W -Wall -Werror
 all: client server
 
 client: objcli
-		$(CC) `sdl-config --cflags --libs` -framework Cocoa -o bin/client args.o client.o socket.o print.o graphics.o
+		$(CC) `sdl-config --cflags --libs`  -o bin/client args.o client.o socket.o print.o graphics.o
 server: objser
 		$(CC) -o bin/server server.o socket.o request.o
 
