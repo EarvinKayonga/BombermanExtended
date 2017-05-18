@@ -1,16 +1,19 @@
+CC      =   gcc
+CFLAGS  =   -W -Wall -Werror
+
 all: client server
 
 client: objcli
-		gcc -o bin/client client.o socket.o print.o
+		$(CC) `sdl-config --cflags --libs` -framework Cocoa -o bin/client client.o socket.o print.o graphics.o
 server: objser
-		gcc -o bin/server server.o socket.o request.o
+		$(CC) -o bin/server server.o socket.o request.o
 
 objcli:
-	gcc -c client/client.c common/socket.c common/print.c
-
+	$(CC) -c client/client.c common/socket.c common/print.c client/sdl/graphics.c
 
 objser:
-	gcc -c server/server.c common/socket.c common/request.c
+	$(CC) -c server/server.c common/socket.c common/request.c
+
 clean:
 	rm -rf *.o
 
