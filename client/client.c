@@ -27,13 +27,9 @@ int             game_loop(int socket){
     client.id = -1;
     window = init_sdl();
 
-    while(1) {
-        SDL_WaitEvent(&event);
-
-        if(event.type == SDL_QUIT)
-            graceful_exit(window);
-
-        if ((ret = select(socket + 1, &set, NULL, NULL, &tv)) < 0)
+    while(event.type != SDL_QUIT) {
+        SDL_PollEvent(&event);
+       /* if ((ret = select(socket + 1, &set, NULL, NULL, &tv)) < 0)
             die("select()");
 
         FD_ZERO(&set);
@@ -152,8 +148,10 @@ int             game_loop(int socket){
                     }
                 }
             }
-        }
+        }*/
     }
 
-    return 0;
+
+    graceful_exit(window);
+    return (0);
 }
