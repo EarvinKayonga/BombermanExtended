@@ -27,4 +27,12 @@ SDL_Surface  *init_sdl(){
     return (window);
 }
 
+void        graceful_exit(SDL_Surface *f){
+    if (f != NULL)
+        SDL_FreeSurface(f);
+
+    SDL_Quit();
+    fflush(stdout) ;
+    exit(0);
+}
 

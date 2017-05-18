@@ -1,5 +1,6 @@
 #include    "../common/socket_util.h"
 #include    "../common/request.h"
+#include    "sdl/sdl.h"
 
 
 #ifndef         BOMBERMAN_ARGS_H

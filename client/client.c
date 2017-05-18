@@ -1,6 +1,6 @@
 #include 	    "client.h"
 
-int             gameloop(int socket);
+int             game_loop(int);
 
 int             main(int argc, char **args)
 {
@@ -16,32 +16,39 @@ int             main(int argc, char **args)
 int             game_loop(int socket){
     char        c;
     request_t   request;
-    client_t     client;
+    client_t    client;
+    SDL_Surface *window;
+    SDL_Event   event;
 
     int i, j, k, id, ret, reading;
     fd_set      set;
     struct timeval tv;
 
     client.id = -1;
+    window = init_sdl();
 
+    while(1) {
+        SDL_WaitEvent(&event);
 
+        if(event.type == SDL_QUIT)
+            graceful_exit(window);
 
-    while (1)
-    {
+        if ((ret = select(socket + 1, &set, NULL, NULL, &tv)) < 0)
+            die("select()");
+
         FD_ZERO(&set);
         FD_SET(0, &set);
         FD_SET(socket, &set);
         tv.tv_sec = 0;
         tv.tv_usec = 10;
-        if ((ret = select(socket + 1, &set, NULL, NULL, &tv)) < 0)
-            die("select()");
+
         if (ret)
         {
             if (FD_ISSET(0, &set))
             {
                 c = getchar();
                 if (c == '.')
-                    exit(0);
+                    graceful_exit(window);
 
                 if (c == 'z' || c == 'q' || c == 's' || c == 'd' || c == 'b')
                 {
@@ -77,7 +84,7 @@ int             game_loop(int socket){
                     printf("server is disconnect ....\n");
                     fflush(stdout);
                     close(socket);
-                    exit(0);
+                    graceful_exit(window);
                 }
                 else
                 {
@@ -94,7 +101,7 @@ int             game_loop(int socket){
                     {
                         printf("G A M E O V E R\n");
                         fflush(stdout);
-                        exit(0);
+                        graceful_exit(window);
                     }
 
                     if (request.protocol == P_UPDATE)
