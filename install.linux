@@ -1,6 +1,0 @@
-wget https://www.libsdl.org/release/SDL-1.2.15.zip
-unzip SDL-1.2.15.zip 
-cd SDL-1.2.15
-./configure
-make
-sudo make install
