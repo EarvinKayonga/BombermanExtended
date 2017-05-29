@@ -1,5 +1,4 @@
-#include 	    <unistd.h>
-#include 	    "../common/request.h"
+#include        "server.h"
 
 int 		    main(int argc, char **args)
 {
