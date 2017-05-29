@@ -1,5 +1,7 @@
 #include    "socket_util.h"
 
+int             Atoi(char *s);
+
 void        die(char *message)
 {
   perror(message);

@@ -156,3 +156,14 @@ int             game_loop(SDL_Surface   *window,
     }
     return (0);
 }
+
+void              intro() {
+    printf("............................\n");
+    printf("....  B O M B E R M A N  ...\n");
+    printf("............................\n");
+    printf("Quit    : .\n");
+    printf("Up      : z\n");
+    printf("Right   : d\n");
+    printf("Down    : s\n");
+    printf("Left    : q\n\n");
+}

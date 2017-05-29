@@ -1,35 +1,29 @@
-#include 	<unistd.h>
-#include 	"../common/request.h"
+#include 	    <unistd.h>
+#include 	    "../common/request.h"
 
-int 		main(int argc, char **args)
+int 		    main(int argc, char **args)
 {
-  int socket,
-    max,
-    i,
-    j,
-    k,
-    t,
-    len,
-    client,
-    pos,
-    ret,
-    reading,
-    time;
-  fd_set set;
-  request_t server_request;
-  request_t request;
-  struct timeval tv;
-  struct sockaddr_in addr;
-  int bombs[MAP_ROW][MAP_COL];
-  for (i = 0; i < MAP_ROW; i++)
-    for (j = 0; j < MAP_COL; j++)
-      bombs[i][j] = 0;
+    int 	    socket, max,
+    		    i, j, k, t,
+    		    len, client,
+    		    pos, ret,
+    		    reading, time;
+    int         bombs[MAP_ROW][MAP_COL];
+    fd_set      set;
+    request_t   server_request;
+    request_t   request;
+    struct      timeval tv;
+    struct      sockaddr_in addr;
+
+    for (i = 0; i < MAP_ROW; i++)
+        for (j = 0; j < MAP_COL; j++)
+            bombs[i][j] = 0;
   
-  socket = create_server("0.0.0.0", 4242);
-  printf("Server is running ...\n");
-  fflush(stdout);
-  init_request(&server_request, "map.txt");
-  while (1)
+    socket = create_server("0.0.0.0", 4242);
+    printf("Server is running ...\n");
+    fflush(stdout);
+    init_request(&server_request, "map.txt");
+    while (1)
     {
       FD_ZERO(&set);
       FD_SET(socket, &set);
@@ -37,77 +31,74 @@ int 		main(int argc, char **args)
       tv.tv_sec = 0;
       tv.tv_usec = 10;
       for (i = 0; i < MAX_CLIENTS; i++)
-	{
-	  if (server_request.clients[i].id != -1)
-	    {
+      {
+	    if (server_request.clients[i].id != -1)
+        {
 	      FD_SET(server_request.clients[i].id , &set);
 	      if (server_request.clients[i].id > max)	
-		max = server_request.clients[i].id;
+		    max = server_request.clients[i].id;
 	    }
-	}
+      }
       
       if ((ret = select(max + 1, &set, NULL, NULL, &tv)) < 0)
-	die("select()");
+	    die("select()");
       
       if (ret == 0)
-	{
+      {
 	  // timeout
-	  if (time > 1000)
-	    {
+	    if (time > 1000)
+        {
 	      time = 0;
 	      for (i = 0; i < MAP_ROW; i++)
-		{
-		  for (j = 0; j < MAP_COL; j++)
-		    {
+          {
+		    for (j = 0; j < MAP_COL; j++)
+            {
 		      if (bombs[i][j] > 0)
-			bombs[i][j]--;
+			    bombs[i][j]--;
 		      
 		      if (bombs[i][j] == 0)
-			{
-			  if (server_request.map[i][j] == BLOCK_FIRE)
-			    {			      
+              {
+			    if (server_request.map[i][j] == BLOCK_FIRE)
+                {
 			      server_request.map[i][j] = BLOCK_PATH;
 			      bombs[i][j] = 0;
 			    }
 			  else if (server_request.map[i][j] == BLOCK_BOMB_1)
 			    {
 			      for (k = -2; k < 3; k++)
-				{
-				  if (i + k > 0 && i + k < MAP_ROW)
+                  {
+				    if (i + k > 0 && i + k < MAP_ROW)
 				    {
 				      if (server_request.map[i + k][j] != BLOCK_STEEL)
-					{
-					  bombs[i + k][j] = 4;
-					  server_request.map[i + k][j] = BLOCK_FIRE;
-					}
+                      {
+					    bombs[i + k][j] = 4;
+					    server_request.map[i + k][j] = BLOCK_FIRE;
+                      }
 				    }
-				  if (j + k > 0 && j + k < MAP_ROW)
-				    {
-				      if (server_request.map[i][j + k] != BLOCK_STEEL)
-					{
-					  bombs[i][j + k] = 4; 
-					  server_request.map[i][j + k] = BLOCK_FIRE;
-					}
-				    }
-				  for (t = 0; t < MAX_CLIENTS; t++)
-				    {
-				      client_t aux = server_request.clients[t];
-				      
-				      if (aux.id > 0 && aux.alive
-					  && ((aux.posx == (k + j) && aux.posy == i)
-					      ||(aux.posx == j && aux.posy == (k + i))))
-					{
-					  server_request.clients[t].alive = 0;
-					  server_request.clients[t].posx = -1;
-					  server_request.clients[t].posy = -1;
-					  request.protocol = P_GAME_OVER;
-					  write(aux.id, &request, sizeof(request_t));
-					}
-				    }
-				}
+				    if (j + k > 0 && j + k < MAP_ROW)
+                    {
+                      if (server_request.map[i][j + k] != BLOCK_STEEL)
+                      {
+					    bombs[i][j + k] = 4;
+					    server_request.map[i][j + k] = BLOCK_FIRE;
+                      }
+                    }
+				    for (t = 0; t < MAX_CLIENTS; t++) {
+                      client_t aux = server_request.clients[t];
+                      if (aux.id > 0 && aux.alive
+                          && ((aux.posx == (k + j) && aux.posy == i)
+                              || (aux.posx == j && aux.posy == (k + i)))) {
+                          server_request.clients[t].alive = 0;
+                          server_request.clients[t].posx = -1;
+                          server_request.clients[t].posy = -1;
+                          request.protocol = P_GAME_OVER;
+                          write(aux.id, &request, sizeof(request_t));
+                      }
+                    }
+                  }
 			    }
-			}
-		    }
+              }
+            }
 		}
 	      for (i = 0; i < MAX_CLIENTS; i++)
 		{
