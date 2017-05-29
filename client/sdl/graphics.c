@@ -1,16 +1,15 @@
-#include    "sdl.h"
+#include        "sdl.h"
 
-const int   SCREEN_WIDTH = 640;
-const int   SCREEN_HEIGHT = 480;
-const int   SCREEN_BPP = 32;
-const char* BOOM= "Boom Bitch";
-
+const int       SCREEN_WIDTH = 640;
+const int       SCREEN_HEIGHT = 480;
+const int       SCREEN_BPP = 32;
+const char*     BOOM= "Boom Bitch";
 
 /*
  * Init the SDL Library and returns a SDL_Surface Object
  */
-SDL_Surface  *init_sdl(){
-    SDL_Surface  *window;
+SDL_Surface     *init_sdl(){
+    SDL_Surface *window;
 
     if (SDL_Init(SDL_INIT_EVERYTHING)
         || ((window = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_HWSURFACE)) == NULL)){
@@ -23,17 +22,14 @@ SDL_Surface  *init_sdl(){
     return (window);
 }
 
-SDL_Surface *load_image(char *filename) {
-    SDL_Surface
-            *loadedImage,
-            *optimizedImage;
+SDL_Surface     *load_image(char *filename) {
+    SDL_Surface *loadedImage,
+                *optimizedImage;
 
     loadedImage = SDL_LoadBMP( filename);
 
-    if( loadedImage != NULL ) {
-        optimizedImage = SDL_DisplayFormat( loadedImage );
+    if( loadedImage != NULL && (optimizedImage = SDL_DisplayFormat(loadedImage)) != NULL )
         SDL_FreeSurface( loadedImage );
-    }
 
     return (optimizedImage);
 }

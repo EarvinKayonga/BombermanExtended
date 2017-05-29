@@ -5,6 +5,6 @@
 #include 	"../common/request.h"
 #include    "../common/args.h"
 
-int         server(int socket);
+int         server(int);
 
 #endif      //BOMBERMAN_SERVER_H

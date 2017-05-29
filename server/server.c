@@ -6,8 +6,8 @@ int 		    main(int argc, char **args)
     config_t    configuration;
 
     configuration = from_arguments(argc, args);
-    socket = create_server(configuration.hostname, configuration.port);
-    return (server(socket));
+    socket =   create_server(configuration.hostname, configuration.port);
+    return      (server(socket));
 }
 
 void            init_map(int map[MAP_ROW][MAP_COL]) {

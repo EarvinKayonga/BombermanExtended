@@ -1,12 +1,12 @@
-#include "request.h"
+#include    "request.h"
 
-int       posx = 1;
+int         posx = 1;
 
-void      init_request(request_t *source, char *filename)
+void        init_request(request_t *source, char *filename)
 {
-    int   row, col, i;
-    char c;
-    FILE *file;
+    int     row, col, i;
+    char    c;
+    FILE    *file;
 
     for (i = 0; i < MAX_CLIENTS; i++)
     {
