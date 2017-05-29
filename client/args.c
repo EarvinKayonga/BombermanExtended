@@ -18,3 +18,14 @@ int               Atoi(char *s) {
     while(*s != '\0' && !isdigit(*s)) s++;
     return Atoi(s);
 }
+
+void              intro() {
+    printf("............................\n");
+    printf("....  B O M B E R M A N  ...\n");
+    printf("............................\n");
+    printf("Quit    : .\n");
+    printf("Up      : z\n");
+    printf("Right   : d\n");
+    printf("Down    : s\n");
+    printf("Left    : q\n\n");
+}

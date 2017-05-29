@@ -18,5 +18,8 @@ typedef struct  config_s
 }               config_t;
 
 config_t        from_arguments(int argc, char **args);
+void            intro();
+int             window_loop(int);
+int             game_loop(SDL_Surface*, int, int, client_t, fd_set, struct timeval);
 
 #endif          //BOMBERMAN_ARGS_H

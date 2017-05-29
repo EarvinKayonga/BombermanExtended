@@ -1,8 +1,5 @@
 #include 	    "client.h"
 
-int             window_loop(int);
-int             game_loop(SDL_Surface*, int, int, client_t, fd_set, struct timeval);
-
 int             main(int argc, char **args)
 {
     int         socket;
@@ -124,16 +121,7 @@ int             game_loop(SDL_Surface   *window,
                     for (i = 0; i < 10; i++)
                         if (request.clients[i].id == id && id > 0)
                             client = request.clients[i];
-
-                    printf("............................\n");
-                    printf("....  B O M B E R M A N  ...\n");
-                    printf("............................\n");
-                    printf("Quit    : .\n");
-                    printf("Up      : z\n");
-                    printf("Right   : d\n");
-                    printf("Down    : s\n");
-                    printf("Left    : q\n\n");
-
+                    intro();
                     for (i = 0; i < MAP_ROW; i++)
                     {
                         for (j = 0; j < MAP_COL; j++)
