@@ -53,7 +53,7 @@ int             server(int socket) {
     init_map(bombs);
     printf("Server is running ...\n");
     fflush(stdout);
-    init_request(&server_request, "map.txt");
+    init_request(&server_request, "maps/map.txt");
     while (1)
     {
         FD_ZERO(&set);
@@ -72,7 +72,7 @@ int             server(int socket) {
         }
 
         if ((ret = select(max + 1, &set, NULL, NULL, &tv)) < 0)
-            die("select()");
+            panic("select()");
 
         if (ret == 0)
         {

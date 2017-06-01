@@ -1,15 +1,27 @@
+/**
+ * \file common/exits.c
+ * \brief Exit Handling.
+ * \version 0.1
+ * \date June 2017, 1
+ *
+ * Exit Handling
+ *
+ */
 #include    "exits.h"
 
-/*
- * Gracefully Freeing used resources and exiting the program
+/**
+ * \fn void panic(char *message)
+ * \brief Gracefully Freeing used resources and exiting the program
  */
-void        graceful_exit(){
+void        graceful_exit()
+{
     fflush(stdout) ;
     exit(0);
 }
 
-/*
- * Handling generic errors
+/**
+ * \fn void panic(char *message)
+ * \brief Freeing used resources and exiting the program && exiting the program because of a major issue
  */
 void        panic(char *message)
 {

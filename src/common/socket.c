@@ -1,14 +1,5 @@
 #include    "socket_util.h"
 
-int         Atoi(char *s);
-
-void        die(char *message)
-{
-  perror(message);
-  fflush(stdout) ;
-  exit(1);
-}
-
 int         create_server(char *hostname, int port)
 {
    int      sockfd;
@@ -18,12 +9,12 @@ int         create_server(char *hostname, int port)
    sockfd = socket(AF_INET, SOCK_STREAM, 0);
    
    if (sockfd < 0)
-     die("socket()");
+     panic("socket()");
    
    server = gethostbyname(hostname);
    
    if (server == NULL)
-     die("server()");
+     panic("server()");
    
    bzero((char *) &serv_addr, sizeof(serv_addr));
    serv_addr.sin_family = AF_INET;
@@ -33,7 +24,7 @@ int         create_server(char *hostname, int port)
    serv_addr.sin_port = htons(port);
    
    if (bind(sockfd, (struct sockaddr*) &serv_addr, sizeof(serv_addr)) < 0)
-     die("bind()");
+     panic("bind()");
 
    listen(sockfd, 10);
    return (sockfd);
@@ -48,12 +39,12 @@ int         create_client(char *hostname, int port)
    sockfd = socket(AF_INET, SOCK_STREAM, 0);
    
    if (sockfd < 0)
-     die("socket()");
+     panic("socket()");
    
    server = gethostbyname(hostname);
    
    if (server == NULL)
-     die("server()");
+     panic("server()");
    
    bzero((char *) &serv_addr, sizeof(serv_addr));
    serv_addr.sin_family = AF_INET;
@@ -63,7 +54,7 @@ int         create_client(char *hostname, int port)
    serv_addr.sin_port = htons(port);
 
    if (connect(sockfd, (struct sockaddr*) &serv_addr, sizeof(serv_addr)) < 0)
-     die("connect()");
+     panic("connect()");
    
    return (sockfd);
 }

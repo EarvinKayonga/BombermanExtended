@@ -35,7 +35,7 @@ void        init_request(request_t *source, char *filename)
             break;
     }
     if (row != MAP_ROW || col != 0)
-        die("bad map");
+        panic("bad map");
 }
 
 void       copy_request(request_t source, request_t *destination)

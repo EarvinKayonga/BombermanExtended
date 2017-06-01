@@ -10,8 +10,8 @@
 #include    <netdb.h>
 #include    <netinet/in.h>
 #include    <arpa/inet.h>
+#include    "exits.h"
 
-void        die(char *message);
 int         create_server(char *hostname, int port);
 int         create_client(char *hostname, int port);
 

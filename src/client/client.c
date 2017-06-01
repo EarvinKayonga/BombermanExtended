@@ -49,7 +49,8 @@ void              intro() {
  * \param socket server socket.
  * \return 0 if no errors occured, else 1.
  */
-int             init_loop(int socket){
+int             init_loop(int socket)
+{
     struct timeval tv;
     fd_set      set;
     client_t    client;
@@ -66,7 +67,7 @@ int             init_loop(int socket){
         tv.tv_usec = 10;
 
         if ((ret = select(socket + 1, &set, NULL, NULL, &tv)) < 0)
-            die("select()");
+            panic("select()");
 
         game_loop(ret, socket, client, set, tv);
     }
