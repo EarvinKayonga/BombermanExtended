@@ -6,7 +6,7 @@ all: client server
 client: objcli
 		$(CC) -o bin/client client.o exits.o args.o socket.o
 server: objser
-		$(CC) -o bin/server server.o socket.o request.o args.o
+		$(CC) -o bin/server server.o exits.o args.o socket.o request.o
 
 objcli:
 	$(CC) -c src/common/*.c src/network/*.c src/client/*.c
