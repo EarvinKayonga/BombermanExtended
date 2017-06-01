@@ -1,13 +1,9 @@
-#include    "sdl.h"
+#include    "exits.h"
 
 /*
  * Gracefully Freeing used resources and exiting the program
  */
-void        graceful_exit(SDL_Surface *f){
-    if (f != NULL)
-        SDL_FreeSurface(f);
-
-    SDL_Quit();
+void        graceful_exit(){
     fflush(stdout) ;
     exit(0);
 }
@@ -17,7 +13,6 @@ void        graceful_exit(SDL_Surface *f){
  */
 void        panic(char *message)
 {
-    SDL_Quit();
     fflush(stdout) ;
     perror(message);
     exit(1);

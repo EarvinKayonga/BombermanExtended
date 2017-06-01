@@ -8,41 +8,36 @@ int             main(int argc, char **args)
     configuration = from_arguments(argc, args);
     socket = create_client(configuration.hostname, configuration.port);
 
-    return       (window_loop(socket));
+    return       (init_loop(socket));
 }
 
-int             window_loop(int socket){
-    SDL_Surface *window;
-    SDL_Event   event;
+int             init_loop(int socket){
     struct timeval tv;
     fd_set      set;
     client_t    client;
     int ret;
 
-
     client.id = -1;
-    FD_ZERO(&set);
-    FD_SET(0, &set);
-    FD_SET(socket, &set);
-    tv.tv_sec = 0;
-    tv.tv_usec = 10;
-    window = init_sdl();
 
-    if ((ret = select(socket + 1, &set, NULL, NULL, &tv)) < 0)
-        die("select()");
+    while(1) {
 
-    while(event.type != SDL_QUIT) {
-        SDL_PollEvent(&event);
-        game_loop(window, ret, socket, client, set, tv);
+        FD_ZERO(&set);
+        FD_SET(0, &set);
+        FD_SET(socket, &set);
+        tv.tv_sec = 0;
+        tv.tv_usec = 10;
+
+        if ((ret = select(socket + 1, &set, NULL, NULL, &tv)) < 0)
+            die("select()");
+
+        game_loop(ret, socket, client, set, tv);
     }
 
 
-    graceful_exit(window);
     return (0);
 }
 
-int             game_loop(SDL_Surface   *window,
-                          int           ret,
+int             game_loop(int           ret,
                           int           socket,
                           client_t      client,
                           fd_set        set,
@@ -58,7 +53,7 @@ int             game_loop(SDL_Surface   *window,
         {
             c = getchar();
             if (c == '.')
-                graceful_exit(window);
+                graceful_exit();
 
             if (c == 'z' || c == 'q' || c == 's' || c == 'd' || c == 'b')
             {
@@ -94,7 +89,7 @@ int             game_loop(SDL_Surface   *window,
                 printf("server is disconnect ....\n");
                 fflush(stdout);
                 close(socket);
-                graceful_exit(window);
+                graceful_exit();
             }
             else
             {
@@ -111,7 +106,7 @@ int             game_loop(SDL_Surface   *window,
                 {
                     printf("G A M E O V E R\n");
                     fflush(stdout);
-                    graceful_exit(window);
+                    graceful_exit();
                 }
 
                 if (request.protocol == P_UPDATE)

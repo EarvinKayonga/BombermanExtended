@@ -34,13 +34,11 @@ addons:
      - tree
      - wget
      - zip
-     - libsdl1.2-dbg
-     - libsdl1.2-dev
      - build-essential
 
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install tree sdl; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install tree; fi
 
 before_script:
   - tree -CFL 3
