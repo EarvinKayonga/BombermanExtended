@@ -6,9 +6,16 @@
 #include    <stdlib.h>
 #include    <string.h>
 #include    <sys/types.h>
-#include    <sys/socket.h>
+
 #include    <netdb.h>
 #include    <netinet/in.h>
+
+#ifdef __WIN32__
+# include <winsock2.h>
+#else
+# include <sys/socket.h>
+#endif
+
 #include    <arpa/inet.h>
 #include    "../common/exits.h"
 

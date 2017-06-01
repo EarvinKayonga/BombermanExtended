@@ -18,6 +18,12 @@
  */
 int             main(int argc, char **args)
 {
+    #ifdef __WIN32__
+       WORD versionWanted = MAKEWORD(1, 1);
+       WSADATA wsaData;
+       WSAStartup(versionWanted, &wsaData);
+    #endif
+
     int         socket;
     config_t    configuration;
 
