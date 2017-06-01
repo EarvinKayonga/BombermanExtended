@@ -13,9 +13,9 @@
     #include<sys/socket.h>
     #include<netdb.h>
     #include<netinet/in.h>
+    #include<arpa/inet.h>
 #endif
 
-#include    <arpa/inet.h>
 #include    "../common/exits.h"
 
 int         create_server(char *hostname, int port);
