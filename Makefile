@@ -12,7 +12,7 @@ objcli:
 	$(CC) -c common/*.c client/*.c
 
 objser:
-	$(CC) -c common/* server/server.c
+	$(CC) -c common/*.c server/server.c
 
 clean:
 	rm -rf *.o
