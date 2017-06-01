@@ -1,5 +1,22 @@
+/**
+ * \file server/server.c
+ * \brief Server's Implementation.
+ * \version 0.1
+ * \date June 2017, 1
+ *
+ * The main and select functions for the server
+ *
+ */
 #include        "server.h"
 
+
+/**
+ * \fn int main(int argc, char **args)
+ * \brief Initialises server from the cli arguments
+ * \param argc number of arguments
+ * \param args list of arguments.
+ * \return a socket if no errors occured, else 1.
+ */
 int 		    main(int argc, char **args)
 {
     int 	    socket;
@@ -10,6 +27,11 @@ int 		    main(int argc, char **args)
     return      (server(socket));
 }
 
+/**
+ * \fn void init_map(int map[MAP_ROW][MAP_COL])
+ * \brief Initialises a given map
+ * \param map a two dimensional table that represents the playable map
+ */
 void            init_map(int map[MAP_ROW][MAP_COL]) {
     for (int i = 0; i < MAP_ROW; i++)
         for (int j = 0; j< MAP_COL;j++)

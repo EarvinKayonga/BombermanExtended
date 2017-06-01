@@ -1,6 +1,6 @@
 #include    "socket_util.h"
 
-int             Atoi(char *s);
+int         Atoi(char *s);
 
 void        die(char *message)
 {
@@ -32,9 +32,9 @@ int         create_server(char *hostname, int port)
 	 server->h_length);
    serv_addr.sin_port = htons(port);
    
-   if (bind(sockfd, (struct sockaddr*) &serv_addr, sizeof(serv_addr)) < 0) {
+   if (bind(sockfd, (struct sockaddr*) &serv_addr, sizeof(serv_addr)) < 0)
      die("bind()");
-   }
+
    listen(sockfd, 10);
    return (sockfd);
 }
@@ -61,6 +61,7 @@ int         create_client(char *hostname, int port)
 	 (char *)&serv_addr.sin_addr.s_addr,
 	 server->h_length);
    serv_addr.sin_port = htons(port);
+
    if (connect(sockfd, (struct sockaddr*) &serv_addr, sizeof(serv_addr)) < 0)
      die("connect()");
    

@@ -1,5 +1,21 @@
+/**
+ * \file client/client.c
+ * \brief client's Implementation.
+ * \version 0.1
+ * \date June 2017, 1
+ *
+ * The main and select functions for the client
+ *
+ */
 #include 	    "client.h"
 
+/**
+ * \fn int main(int argc, char **args)
+ * \brief Contacts the server with the given arguments
+ * \param argc number of arguments
+ * \param args list of arguments.
+ * \return a socket if no errors occured, else 1.
+ */
 int             main(int argc, char **args)
 {
     int         socket;
@@ -11,6 +27,28 @@ int             main(int argc, char **args)
     return       (init_loop(socket));
 }
 
+/**
+ * \fn void intro()
+ * \brief Prints the Intro
+ */
+void              intro() {
+    printf("............................\n");
+    printf("....  B O M B E R M A N  ...\n");
+    printf("............................\n");
+    printf("Quit    : .\n");
+    printf("Up      : z\n");
+    printf("Right   : d\n");
+    printf("Down    : s\n");
+    printf("Left    : q\n\n");
+}
+
+
+/**
+ * \fn int init_loop(int socket)
+ * \brief init networks related variables and the client struct, then reads from the server socket
+ * \param socket server socket.
+ * \return 0 if no errors occured, else 1.
+ */
 int             init_loop(int socket){
     struct timeval tv;
     fd_set      set;
@@ -150,15 +188,4 @@ int             game_loop(int           ret,
         }
     }
     return (0);
-}
-
-void              intro() {
-    printf("............................\n");
-    printf("....  B O M B E R M A N  ...\n");
-    printf("............................\n");
-    printf("Quit    : .\n");
-    printf("Up      : z\n");
-    printf("Right   : d\n");
-    printf("Down    : s\n");
-    printf("Left    : q\n\n");
 }

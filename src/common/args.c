@@ -2,7 +2,7 @@
 
 int             Atoi(char *s) {
     while(*s != '\0' && !isdigit(*s)) s++;
-    return Atoi(s);
+    return (Atoi(s));
 }
 
 config_t        from_arguments(int argc, char **args){
