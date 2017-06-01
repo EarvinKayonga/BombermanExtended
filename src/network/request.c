@@ -1,3 +1,13 @@
+/**
+ * \file common/request.c
+ * \brief Client Request Handling.
+ * \version 0.1
+ * \date June 2017, 1
+ *
+ * Client Request Handling
+ *
+ */
+
 #include    "request.h"
 
 int         posx = 1;

@@ -35,6 +35,7 @@ addons:
      - wget
      - zip
      - build-essential
+     - doxygen
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update ; fi

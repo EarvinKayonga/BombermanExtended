@@ -1,3 +1,12 @@
+/**
+ * \file common/socket.c
+ * \brief Contacting and Creating a server.
+ * \version 0.1
+ * \date June 2017, 1
+ *
+ * Functions for Contacting and Creating a server (by socket)
+ *
+ */
 #include    "socket_util.h"
 
 int         create_server(char *hostname, int port)

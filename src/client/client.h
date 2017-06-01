@@ -1,5 +1,5 @@
-#include    "../common/socket_util.h"
-#include    "../common/request.h"
+#include    "../network/socket_util.h"
+#include    "../network/request.h"
 #include    "../common/args.h"
 #include    "../common/exits.h"
 

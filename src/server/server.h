@@ -2,7 +2,7 @@
 #define     BOMBERMAN_SERVER_H
 
 #include 	<unistd.h>
-#include 	"../common/request.h"
+#include    "../network/request.h"
 #include    "../common/args.h"
 
 int         server(int);
