@@ -8,6 +8,8 @@
 #include    <sys/types.h>
 
 #ifdef __WIN32__
+    #define _BSD_SOURCE
+    #define _WIN32_WINNT 0x0501
     #include<ws2tcpip.h>
     #include<winsock2.h>
     #include<winsock.h>
@@ -19,6 +21,8 @@
 #endif
 
 #include    "../common/exits.h"
+
+#define bzero(b,len) (memset((b), '\0', (len)), (void) 0)
 
 int         create_server(char *hostname, int port);
 int         create_client(char *hostname, int port);
