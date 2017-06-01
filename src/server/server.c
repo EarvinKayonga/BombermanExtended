@@ -19,14 +19,16 @@
  */
 int 		    main(int argc, char **args)
 {
-    #ifdef __WIN32__
-        WORD versionWanted = MAKEWORD(1, 1);
-           WSADATA wsaData;
-           WSAStartup(versionWanted, &wsaData);
-    #endif
-
     int 	    socket;
     config_t    configuration;
+
+    #ifdef __WIN32__
+    #define _BSD_SOURCE
+    #define _WIN32_WINNT 0x0501
+        WORD versionWanted = MAKEWORD(1, 1);
+        WSADATA wsaData;
+        WSAStartup(versionWanted, &wsaData);
+    #endif
 
     configuration = from_arguments(argc, args);
     socket =   create_server(configuration.hostname, configuration.port);
