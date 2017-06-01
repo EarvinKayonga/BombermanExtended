@@ -1,5 +1,7 @@
 # Bomberman Extended 
 
+[![Build Status](https://travis-ci.org/EarvinKayonga/BombermanExtended.svg?branch=master)](https://travis-ci.org/EarvinKayonga/BombermanExtended)
+
 A C School Project
 
 Runs on Linux, MacOs and Windows

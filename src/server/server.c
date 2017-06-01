@@ -33,8 +33,11 @@ int 		    main(int argc, char **args)
  * \param map a two dimensional table that represents the playable map
  */
 void            init_map(int map[MAP_ROW][MAP_COL]) {
-    for (int i = 0; i < MAP_ROW; i++)
-        for (int j = 0; j< MAP_COL;j++)
+    int         i;
+    int         j;
+
+    for (i = 0; i < MAP_ROW; i++)
+        for (j = 0; j< MAP_COL;j++)
             map[i][j] = 0;
 }
 
