@@ -18,14 +18,14 @@
  */
 int             main(int argc, char **args)
 {
+    int         socket;
+    config_t    configuration;
+
     #ifdef __WIN32__
        WORD versionWanted = MAKEWORD(1, 1);
        WSADATA wsaData;
        WSAStartup(versionWanted, &wsaData);
     #endif
-
-    int         socket;
-    config_t    configuration;
 
     configuration = from_arguments(argc, args);
     socket = create_client(configuration.hostname, configuration.port);

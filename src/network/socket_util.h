@@ -5,6 +5,7 @@
 #include    <unistd.h>
 #include    <stdlib.h>
 #include    <string.h>
+#include    <strings.h>
 #include    <sys/types.h>
 
 #ifdef __WIN32__
