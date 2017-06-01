@@ -79,7 +79,7 @@ int             server(int socket) {
 
         if (ret == 0)
         {
-            // timeout
+            /* timeout*/
             if (time > 1000)
             {
                 time = 0;

@@ -69,7 +69,7 @@ int             init_loop(int socket)
         if ((ret = select(socket + 1, &set, NULL, NULL, &tv)) < 0)
             panic("select()");
 
-        game_loop(ret, socket, client, set, tv);
+        game_loop(ret, socket, client, set);
     }
 
 
@@ -79,8 +79,7 @@ int             init_loop(int socket)
 int             game_loop(int           ret,
                           int           socket,
                           client_t      client,
-                          fd_set        set,
-                          struct timeval tv)
+                          fd_set        set)
 {
     char        c;
     request_t   request;

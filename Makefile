@@ -9,10 +9,10 @@ server: objser
 		$(CC) -o bin/server server.o exits.o args.o socket.o request.o
 
 objcli:
-	$(CC) -c src/common/*.c src/network/*.c src/client/*.c
+	$(CC) $(CFLAGS) -c src/common/*.c src/network/*.c src/client/*.c
 
 objser:
-	$(CC) -c src/common/*.c src/network/*.c src/server/server.c
+	$(CC) $(CFLAGS) -c src/common/*.c src/network/*.c src/server/server.c
 
 clean:
 	rm -rf *.o

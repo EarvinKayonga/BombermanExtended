@@ -4,11 +4,11 @@
 #include    "../common/exits.h"
 
 
-#ifndef         BOMBERMAN_ARGS_H
-#define         BOMBERMAN_ARGS_H
+#ifndef         BOMBERMAN_CLIENT_H
+#define         BOMBERMAN_CLIENT_H
 
 void            intro();
 int             init_loop(int);
-int             game_loop(int, int, client_t, fd_set, struct timeval);
+int             game_loop(int, int, client_t, fd_set);
 
-#endif          //BOMBERMAN_ARGS_H
+#endif

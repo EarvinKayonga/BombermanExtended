@@ -14,4 +14,4 @@ typedef struct  config_s
 
 config_t        from_arguments(int argc, char **args);
 
-#endif          //BOMBERMAN_ARGS_H_H
+#endif

@@ -8,4 +8,4 @@
 
 int         server(int);
 
-#endif      //BOMBERMAN_SERVER_H
+#endif
