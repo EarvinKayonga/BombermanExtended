@@ -49,4 +49,4 @@ script:
   - tree -CFL 3
 
 after_script:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then make debian; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then make debian && dpkg -i distribution/debian/bomberman.deb && which client && which server; fi
