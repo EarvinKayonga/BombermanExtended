@@ -1,6 +1,12 @@
 CC      =   gcc
 CFLAGS  =   -W -Wall -ansi -pedantic
+
+ifdef ComSpec
 OFLAGS  =   -lws2_32 -lwsock32
+else
+OFLAGS  = ""
+endif
+
 
 all: client server
 
