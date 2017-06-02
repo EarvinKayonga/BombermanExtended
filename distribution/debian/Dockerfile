@@ -7,7 +7,7 @@ ADD         maps                            bomberman/DEBIAN/usr/bin/maps
 COPY        Makefile                        bomberman/DEBIAN/usr/bin/
 ADD         src                             bomberman/DEBIAN/usr/bin/src
 WORKDIR     /bomberman/DEBIAN/usr/bin/
-RUN         mkdir bin/&& make && make clean && rm -rf src/
+RUN         mkdir bin/&& make && make clean && rm -rf src/ && mv bin/* . && rm -rf bin
 WORKDIR     /
 RUN         tree bomberman
 RUN         mv  /bomberman/DEBIAN/usr/bin/Makefile .

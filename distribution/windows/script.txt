@@ -1,0 +1,3 @@
+unzip MINGW.zip to C:/MinGw
+powershell.exe -command $env:Path = "C:\MinGw\bin"
+powershell.exe -command make

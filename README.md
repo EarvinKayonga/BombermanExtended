@@ -10,6 +10,7 @@ Runs on Linux, MacOs and Windows
 
 - git
 - gcc or clang
+- zip
 - make (Mingw or make)
 
 Optional:

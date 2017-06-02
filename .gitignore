@@ -3,3 +3,5 @@
 bin/client
 bin/server
 distribution/debian/deb/*.deb
+*.DS_Store
+
