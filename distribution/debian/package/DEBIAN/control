@@ -1,0 +1,9 @@
+Package:	bomberman
+Version:	0.1-sdz
+Section:	base
+Priority:	optional
+Architecture:	all
+Depends:	bash
+Maintainer:	<admin@bomberman.fr>
+Description:	BomberExtended Distribution on Linux
+Homepage:	https://bomberman.fr

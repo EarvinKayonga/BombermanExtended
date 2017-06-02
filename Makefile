@@ -1,19 +1,19 @@
 CC      =   gcc
 CFLAGS  =   -W -Wall -ansi -pedantic
-WINFLAGS= -lws2_32 -lwsock32
+OFLAGS  =   -lws2_32 -lwsock32
 
 all: client server
 
 client: objcli
-		$(CC) -o bin/client client.o exits.o args.o socket.o $(WINFLAGS)
+		$(CC) -o bin/client client.o exits.o args.o socket.o
 server: objser
-		$(CC) -o bin/server server.o exits.o args.o socket.o request.o $(WINFLAGS)
+		$(CC) -o bin/server server.o exits.o args.o socket.o request.o
 
 objcli:
-	$(CC) $(CFLAGS) -c src/common/*.c src/network/*.c src/client/*.c $(WINFLAGS)
+	$(CC) -c src/common/*.c src/network/*.c src/client/*.c
 
 objser:
-	$(CC) $(CFLAGS) -c src/common/*.c src/network/*.c src/server/server.c $(WINFLAGS)
+	$(CC) -c src/common/*.c src/network/*.c src/server/server.c
 
 clean:
 	rm -rf *.o
@@ -25,5 +25,9 @@ re: fclean all
 
 doc:
 	doxygen
+
+debian:
+	docker build -t deb-builder -f distribution/debian/Dockerfile .
+	docker run --rm --name deb-builder -v `pwd`/distribution/debian/deb:/lab deb-builder
 
 .PHONY: all
