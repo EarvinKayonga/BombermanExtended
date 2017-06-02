@@ -9,6 +9,12 @@
  */
 #include    "socket_util.h"
 
+/**
+ * \fn int create_server(char *hostname, int port)
+ * \brief create a server
+ * \param hostname hostname
+ * \param port port
+ */
 int         create_server(char *hostname, int port)
 {
    int      sockfd;
@@ -39,6 +45,12 @@ int         create_server(char *hostname, int port)
    return (sockfd);
 }
 
+/**
+ * \fn int create_client(char *hostname, int port)
+ * \brief contacting the server and creating a client
+ * \param hostname hostname
+ * \param port port
+ */
 int         create_client(char *hostname, int port)
 {
    int      sockfd;

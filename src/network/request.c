@@ -12,6 +12,12 @@
 
 int         posx = 1;
 
+/**
+ * \fn void   init_request(request_t *source, char *filename)
+ * \brief Functions to get the Map
+ * \param source request
+ * \param filename the file that contains the map
+ */
 void        init_request(request_t *source, char *filename)
 {
     int     row, col, i;
@@ -48,6 +54,11 @@ void        init_request(request_t *source, char *filename)
         panic("bad map");
 }
 
+/**
+ * \fn void   copy_request(request_t source, request_t *destination)
+ * \param source
+ * \param destination
+ */
 void       copy_request(request_t source, request_t *destination)
 {
     int    i, j;
@@ -59,6 +70,11 @@ void       copy_request(request_t source, request_t *destination)
         destination->clients[i] = source.clients[i];
 }
 
+/**
+ * \fn int set_client(request_t *source, int client)
+ * \param source
+ * \param client
+ */
 int         set_client(request_t *source, int client)
 {
     int     i;
@@ -76,6 +92,10 @@ int         set_client(request_t *source, int client)
     return (-1);
 }
 
+/**
+ * \fn void   reset_client(client_t *client)
+ * \param client
+ */
 void        reset_client(client_t *client)
 {
     client->id = -1;

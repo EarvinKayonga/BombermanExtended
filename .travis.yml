@@ -7,7 +7,7 @@ matrix:
   include:
     - os: linux
       dist: trusty
-      sudo: false
+      sudo: required
     - os: osx
       osx_image: xcode7.2
 
@@ -53,4 +53,4 @@ script:
 
 after_script:
   - make debian
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then dpkg -i distribution/debian/bomberman.deb && which client && which server; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo dpkg -i distribution/debian/bomberman.deb && which client && which server; fi
