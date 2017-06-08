@@ -4,8 +4,11 @@
 #include    <stdlib.h>
 #include    <stdio.h>
 #include    <string.h>
+#include    "../network/socket_util.h"
 
-void        panic(char *message);
+void        panic(char*);
 void        graceful_exit();
+void        lost_connection(char*, int);
+void        gameover(int socket);
 
 #endif

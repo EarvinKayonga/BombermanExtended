@@ -50,9 +50,9 @@ int             indexOf(const char *table, size_t len, int obj)
     int         i;
 
     i = 0;
-    while((i<len) && (table[i] != obj)) i++;
+    while(((size_t) i < len) && (table[i] != obj)) i++;
 
-    return (i<len) ? (i) : (-1);
+    return ((size_t) i < len) ? (i) : (-1);
 }
 
 /**

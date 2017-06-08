@@ -29,3 +29,23 @@ void        panic(char *message)
     perror(message);
     exit(1);
 }
+
+/**
+ * \fn void lost_connection(char* message, int socket)
+ * \brief Freeing used resources and exiting the program && exiting the program because of a network connection failure
+ */
+void        lost_connection(char* message, int socket)
+{
+    close(socket);
+    panic(message);
+}
+
+/**
+ * \fn void gameover(int socket)
+ * \brief Freeing used resources and exiting the program && exiting the program because the Game is OVER.
+ */
+
+void         gameover(int socket)
+{
+    lost_connection("G A M E O V E R\n", socket);
+}

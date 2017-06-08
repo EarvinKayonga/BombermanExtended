@@ -1,5 +1,5 @@
 CC      =   gcc
-CFLAGS  =   -W -Wall -ansi -pedantic
+CFLAGS  =   -W -Wall -ansi -pedantic -lpthread
 
 ifdef ComSpec
 OFLAGS  =   -lws2_32 -lwsock32
@@ -11,15 +11,15 @@ endif
 all: client server
 
 client: objcli
-		$(CC) -o bin/client client.o exits.o args.o socket.o $(OFLAGS)
+		$(CC) -o bin/client client.o exits.o args.o socket.o helpers.o $(OFLAGS)
 server: objser
 		$(CC) -o bin/server server.o exits.o args.o socket.o request.o $(OFLAGS)
 
 objcli:
-	$(CC) -c src/common/*.c src/network/*.c src/client/*.c
+	$(CC) $(CFLAGS) -c src/common/*.c src/network/*.c src/client/*.c
 
 objser:
-	$(CC) -c src/common/*.c src/network/*.c src/server/server.c
+	$(CC) $(CFLAGS) -c src/common/*.c src/network/*.c src/server/server.c
 
 clean:
 	rm -rf *.o

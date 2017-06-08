@@ -18,7 +18,7 @@
 #define     P_POSE_BOMB     4
 #define     P_GAME_OVER     5
 
-// Protocol
+/*          Protocol        */
 #define     LEFT            1
 #define     RIGHT           2
 #define     DOWN            3

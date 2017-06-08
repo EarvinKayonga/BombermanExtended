@@ -3,12 +3,15 @@
 #include    "../common/args.h"
 #include    "../common/exits.h"
 
-
 #ifndef         BOMBERMAN_CLIENT_H
 #define         BOMBERMAN_CLIENT_H
 
 void            intro();
-void            send_command(char , int, request_t);
+
+void            send_command(char , int);
+void            assign_client(request_t request, client_t* client);
+void            paint(request_t *request, client_t *client);
+
 int             init_loop(int);
 int             game_loop(int, int, client_t, fd_set);
 
@@ -21,6 +24,4 @@ int             game_loop(int, int, client_t, fd_set);
 
 #define         QUIT_KEY        '.'
 
-const char      KEYS[] = { LEFT_KEY, RIGHT_KEY, DOWN_KEY, UP_KEY, BOMB_KEY };
-int             KEYS_COUNT = sizeof(KEYS) / sizeof(char);
 #endif
