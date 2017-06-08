@@ -16,7 +16,7 @@
 void            clear()
 {
     #ifdef __WIN32__
-    clrscr();
+    system("cls");
     #else
     system("/bin/stty raw && /bin/stty cooked && clear");
     #endif
