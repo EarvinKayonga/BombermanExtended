@@ -39,7 +39,7 @@ int         create_server(char *hostname, int port)
    serv_addr.sin_port = htons(port);
    
    if (bind(sockfd, (struct sockaddr*) &serv_addr, sizeof(serv_addr)) < 0)
-     panic("bind()");
+     panic("couldn't take the socket");
 
    listen(sockfd, 10);
    return (sockfd);
@@ -65,7 +65,7 @@ int         create_client(char *hostname, int port)
    server = gethostbyname(hostname);
    
    if (server == NULL)
-     panic("server()");
+     panic("couldn't find the host of the server");
    
    bzero((char *) &serv_addr, sizeof(serv_addr));
    serv_addr.sin_family = AF_INET;
@@ -76,7 +76,7 @@ int         create_client(char *hostname, int port)
    serv_addr.sin_port = htons(port);
 
    if (connect(sockfd, (struct sockaddr*) &serv_addr, sizeof(serv_addr)) < 0)
-     panic("connect()");
+     panic("couldn't connect with the server");
    
    return (sockfd);
 }

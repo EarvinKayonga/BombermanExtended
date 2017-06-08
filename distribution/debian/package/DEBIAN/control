@@ -1,9 +1,8 @@
 Package:	bomberman
 Version:	0.1-sdz
-Section:	base
+Section:	education
 Priority:	optional
 Architecture:	all
-Depends:	bash
 Maintainer:	<admin@bomberman.fr>
 Description:	BomberExtended Distribution on Linux
 Homepage:	https://prepintra.etna-alternance.net/

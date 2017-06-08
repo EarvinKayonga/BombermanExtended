@@ -51,7 +51,7 @@ void        init_request(request_t *source, char *filename)
             break;
     }
     if (row != MAP_ROW || col != 0)
-        panic("bad map");
+        panic("An Error occured while retrieving the map");
 }
 
 /**

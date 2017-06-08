@@ -124,15 +124,15 @@ int             server(int socket) {
                                         }
                                     }
                                     for (t = 0; t < MAX_CLIENTS; t++) {
-                                        client_t aux = server_request.clients[t];
-                                        if (aux.id > 0 && aux.alive
-                                            && ((aux.posx == (k + j) && aux.posy == i)
-                                                || (aux.posx == j && aux.posy == (k + i)))) {
+                                        client_t tmp = server_request.clients[t];
+                                        if (tmp.id > 0 && tmp.alive
+                                            && ((tmp.posx == (k + j) && tmp.posy == i)
+                                                || (tmp.posx == j && tmp.posy == (k + i)))) {
                                             server_request.clients[t].alive = 0;
                                             server_request.clients[t].posx = -1;
                                             server_request.clients[t].posy = -1;
                                             request.protocol = P_GAME_OVER;
-                                            write(aux.id, &request, sizeof(request_t));
+                                            write(tmp.id, &request, sizeof(request_t));
                                         }
                                     }
                                 }
@@ -202,7 +202,7 @@ int             server(int socket) {
             if (FD_ISSET(socket, &set))
             {
                 len = sizeof(addr);
-                client = accept(socket, (struct sockaddr *) &addr,(unsigned int *) &len);
+                client = accept(socket, (struct sockaddr *) &addr, (unsigned int *) &len);
                 printf("New client is connect\n");
                 fflush(stdout);
                 pos = set_client(&server_request, client);
@@ -236,12 +236,12 @@ int             server(int socket) {
                         {
                             server_request.clients[i].next_direction =
                                     request.direction;
-                            printf("Client want move\n");
+                            printf("Client move\n");
                         }
                         else if (request.protocol == P_POSE_BOMB)
                         {
                             server_request.clients[i].pose_bomb = 1;
-                            printf("Client want pose bomb\n");
+                            printf("Client pose bomb\n");
                         }
                         fflush(stdout);
                     }

@@ -12,6 +12,7 @@ typedef struct  config_s
     int         port;
 }               config_t;
 
-config_t        from_arguments(int argc, char **args);
+config_t        from_arguments(int, char**);
+int             indexOf(const char*, size_t, int);
 
 #endif

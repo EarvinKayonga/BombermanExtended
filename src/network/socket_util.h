@@ -22,7 +22,7 @@
 
 #include    "../common/exits.h"
 
-#define bzero(b,len) (memset((b), '\0', (len)), (void) 0)
+#define     bzero(b,len) (memset((b), '\0', (len)), (void) 0)
 
 int         create_server(char *hostname, int port);
 int         create_client(char *hostname, int port);

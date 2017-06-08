@@ -45,6 +45,7 @@ void              intro() {
     printf("Up      : z\n");
     printf("Right   : d\n");
     printf("Down    : s\n");
+    printf("Bomb    : b\n");
     printf("Left    : q\n\n");
 }
 
@@ -64,8 +65,8 @@ int             init_loop(int socket)
 
     client.id = -1;
 
-    while(1) {
-
+    while(1)
+    {
         FD_ZERO(&set);
         FD_SET(0, &set);
         FD_SET(socket, &set);
@@ -82,6 +83,35 @@ int             init_loop(int socket)
     return (0);
 }
 
+void             send_command(char key, int server, request_t request)
+{
+    if (key == '.')
+        graceful_exit();
+
+    if (indexOf(KEYS, KEYS_COUNT, key) > -1) {
+        if (key == BOMB_KEY)
+            request.protocol = P_POSE_BOMB;
+        else {
+            request.protocol = P_MOVE;
+            switch (key) {
+                case UP_KEY:
+                    request.direction = UP;
+                    break;
+                case DOWN_KEY:
+                    request.direction = DOWN;
+                    break;
+                case RIGHT_KEY:
+                    request.direction = RIGHT;
+                    break;
+                case LEFT_KEY:
+                    request.direction = LEFT;
+                    break;
+            }
+        }
+        write(server, &request, sizeof(request_t));
+    }
+}
+
 int             game_loop(int           ret,
                           int           socket,
                           client_t      client,
@@ -94,43 +124,13 @@ int             game_loop(int           ret,
     if (ret)
     {
         if (FD_ISSET(0, &set))
-        {
-            c = getchar();
-            if (c == '.')
-                graceful_exit();
-
-            if (c == 'z' || c == 'q' || c == 's' || c == 'd' || c == 'b')
-            {
-                if (c == 'b')
-                    request.protocol = P_POSE_BOMB;
-                else
-                {
-                    request.protocol = P_MOVE;
-                    switch (c)
-                    {
-                        case 'z':
-                            request.direction = UP;
-                            break;
-                        case 's':
-                            request.direction = DOWN;
-                            break;
-                        case 'd':
-                            request.direction = RIGHT;
-                            break;
-                        default:
-                            request.direction = LEFT;
-                            break;
-                    }
-                }
-                write(socket, &request, sizeof(request_t));
-            }
-        }
+            send_command(getchar(), socket, request);
         if (FD_ISSET(socket, &set))
         {
             reading = read(socket, &request, sizeof(request_t));
             if (reading == 0)
             {
-                printf("server is disconnect ....\n");
+                printf("lost connection with the server\n");
                 fflush(stdout);
                 close(socket);
                 graceful_exit();

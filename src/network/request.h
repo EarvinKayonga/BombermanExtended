@@ -3,30 +3,31 @@
 #ifndef     __REQUEST_H__
 #define     __REQUEST_H__
 
-#define     BLOCK_BOMB_1 'b'
-#define     BLOCK_PATH ' '
-#define     BLOCK_FIRE '*'
-#define     BLOCK_STEEL 's'
-#define     BLOCK_BRICK 'w'
+#define     BLOCK_BOMB_1    'b'
+#define     BLOCK_PATH      ' '
+#define     BLOCK_FIRE      '*'
+#define     BLOCK_STEEL     's'
+#define     BLOCK_BRICK     'w'
 
-#define     OK 1
-#define     KO 0
+#define     OK              1
+#define     KO              0
 
-#define     P_CONNECT 1
-#define     P_MOVE 2
-#define     P_UPDATE 3
-#define     P_POSE_BOMB 4
-#define     P_GAME_OVER 5
+#define     P_CONNECT       1
+#define     P_MOVE          2
+#define     P_UPDATE        3
+#define     P_POSE_BOMB     4
+#define     P_GAME_OVER     5
 
-#define     LEFT 1
-#define     RIGHT 2
-#define     DOWN 3
-#define     UP 4
-#define     NOTHING 5
+// Protocol
+#define     LEFT            1
+#define     RIGHT           2
+#define     DOWN            3
+#define     UP              4
+#define     NOTHING         5
 
-#define     MAP_ROW 10
-#define     MAP_COL 10
-#define     MAX_CLIENTS 10
+#define     MAP_ROW         10
+#define     MAP_COL         10
+#define     MAX_CLIENTS     10
 
 #include    <stdlib.h>
 #include    <stdio.h>

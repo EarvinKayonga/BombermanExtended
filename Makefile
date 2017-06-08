@@ -4,16 +4,16 @@ CFLAGS  =   -W -Wall -ansi -pedantic
 ifdef ComSpec
 OFLAGS  =   -lws2_32 -lwsock32
 else
-OFLAGS  = ""
+OFLAGS  =
 endif
 
 
 all: client server
 
 client: objcli
-		$(CC) -o bin/client client.o exits.o args.o socket.o
+		$(CC) -o bin/client client.o exits.o args.o socket.o $(OFLAGS)
 server: objser
-		$(CC) -o bin/server server.o exits.o args.o socket.o request.o
+		$(CC) -o bin/server server.o exits.o args.o socket.o request.o $(OFLAGS)
 
 objcli:
 	$(CC) -c src/common/*.c src/network/*.c src/client/*.c

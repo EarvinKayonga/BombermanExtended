@@ -38,6 +38,24 @@ int	            getnumber(char *str)
 }
 
 /**
+ * \fn int indexOf(int *table, size_t len, int obj)
+ * \brief quick helper to find the index of a Char in an array
+ * \param table the array of char in which obj must be found
+ * \param len len of the table
+ * \param obj the int
+ * \return -1 if not found.
+ */
+int             indexOf(const char *table, size_t len, int obj)
+{
+    int         i;
+
+    i = 0;
+    while((i<len) && (table[i] != obj)) i++;
+
+    return (i<len) ? (i) : (-1);
+}
+
+/**
  * \fn config_t       from_arguments(int argc, char *args[])
  * \brief Reads the programs arguments and creates a configuration struct
  * \param argc number of arguments

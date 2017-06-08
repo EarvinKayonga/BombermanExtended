@@ -25,6 +25,9 @@ Optional:
     make
 ```
 
+
+##### Run 
+
 then (in 2 differents consoles):
 - Run the server
 ```
