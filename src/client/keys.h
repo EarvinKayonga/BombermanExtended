@@ -3,7 +3,7 @@
 #ifndef         BOMBERMAN_HELPERS_H
 #define         BOMBERMAN_HELPERS_H
 
-#ifdef __WIN32__
+#ifdef          __WIN32__
 #include        <conio.h>
 #endif
 

@@ -6,12 +6,13 @@
 #include    <stdlib.h>
 #include    <strings.h>
 #include    <sys/types.h>
-#include    <sys/select.h>
 #include    <fcntl.h>
 
-#ifdef __WIN32__
+#ifdef      __WIN32__
     #define _BSD_SOURCE
-    #define _WIN32_WINNT 0x0501
+    #ifndef _WIN32_WINNT
+        #define _WIN32_WINNT 0x0501
+    #endif
     #include<ws2tcpip.h>
     #include<winsock2.h>
     #include<winsock.h>

@@ -79,7 +79,7 @@ int             init_loop(int socket)
 
     client.id = -1;
     tv.tv_sec = 0;
-    tv.tv_usec = 10;
+    tv.tv_usec = 20;
     while(1)
     {
         FD_ZERO(&set);
