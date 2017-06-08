@@ -86,9 +86,14 @@ int             init_loop(int socket)
         FD_SET(0, &set);
         FD_SET(socket, &set);
 
+#ifdef __WIN32__
+        if ((ret = select(socket + 1, &set, NULL, NULL, &tv)) == SOCKET_ERROR)
+        char* message;
+        panic(sprintf(message, "select() returned with error %d\n", WSAGetLastError()));
+#else
         if ((ret = select(socket + 1, &set, NULL, NULL, &tv)) < 0)
             panic("select()");
-
+#endif
         game_loop(ret, socket, client, set);
     }
 
