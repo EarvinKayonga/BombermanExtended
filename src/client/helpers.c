@@ -9,20 +9,25 @@
  */
 #include        "keys.h"
 
+/**
+ * \fn void clear
+ * \brief clearing the screen
+ */
 void            clear()
 {
     #ifdef __WIN32__
     clrscr();
-    #endif
-
-    #ifdef linux
-        //system("/bin/stty raw && /bin/stty cooked && clear");
-        system("@cls||clear");
+    #else
+    system("/bin/stty raw && /bin/stty cooked && clear");
     #endif
 }
 
-
-
+/**
+ * \fn void paint(request_t *request, client_t *client)
+ * \brief paint the map on the console
+ * \param request data from the server.
+ * \param client client info from the server.
+ */
 void            paint(request_t *request, client_t *client)
 {
     int         i, j, k, id;
@@ -65,7 +70,12 @@ void            paint(request_t *request, client_t *client)
     fflush(stdout);
 }
 
-
+/**
+ * \fn void send_command(char key, int server)
+ * \brief Send the mouvement of the player to the server
+ * \param key keystroke on which the player pressed.
+ * \param server socket on which the server is listening.
+ */
 void            send_command(char key, int server)
 {
     request_t   request;
@@ -97,6 +107,12 @@ void            send_command(char key, int server)
     }
 }
 
+/**
+ * \fn void assign_client(char key, int server)
+ * \brief assign an Id to a client
+ * \param request data from the server.
+ * \param client client info from the server.
+ */
 void            assign_client(request_t request, client_t* client)
 {
     int         i, id;

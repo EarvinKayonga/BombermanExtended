@@ -26,7 +26,7 @@ void        graceful_exit()
 void        panic(char *message)
 {
     fflush(stdout) ;
-    perror(message);
+    printf("%s \n", message);
     exit(1);
 }
 
