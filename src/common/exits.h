@@ -4,7 +4,7 @@
 #include    <stdlib.h>
 #include    <stdio.h>
 #include    <string.h>
-#include    "../network/socket_util.h"
+#include    "../network/socket.h"
 
 void        panic(char*);
 void        graceful_exit();

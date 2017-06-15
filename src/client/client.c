@@ -14,7 +14,7 @@
  * \brief Contacts the server with the given arguments
  * \param argc number of arguments
  * \param args list of arguments.
- * \return a socket if no errors occured, else 1.
+ * \return a socket if no errors occurred, else 1.
  */
 int             main(int argc, char **args)
 {
@@ -75,11 +75,12 @@ int             init_loop(int socket)
     int         ret;
     fd_set      set;
     client_t    client;
+
     struct timeval tv;
 
-    client.id = -1;
-    tv.tv_sec = 0;
-    tv.tv_usec = 20;
+    client.id   = -1;
+    tv.tv_sec   = 0;
+    tv.tv_usec  = 20;
     while(1)
     {
         FD_ZERO(&set);
@@ -87,12 +88,12 @@ int             init_loop(int socket)
         FD_SET(socket, &set);
 
 #ifdef __WIN32__
-        if ((ret = select(socket + 1, &set, NULL, NULL, &tv)) == SOCKET_ERROR)
         char* message;
-        panic(sprintf(message, "select() returned with error %d\n", WSAGetLastError()));
+        if ((ret = select(socket + 1, &set, NULL, NULL, &tv)) == SOCKET_ERROR)
+            panic(sprintf(message, "select() returned with error %d\n", WSAGetLastError()));
 #else
         if ((ret = select(socket + 1, &set, NULL, NULL, &tv)) < 0)
-            panic("select()");
+            panic("select ()");
 #endif
         game_loop(ret, socket, client, set);
     }

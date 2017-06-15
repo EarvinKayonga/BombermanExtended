@@ -1,10 +1,10 @@
-#include    "../network/socket_util.h"
-#include    "../network/request.h"
-#include    "../common/args.h"
-#include    "../common/exits.h"
-
 #ifndef         BOMBERMAN_CLIENT_H
 #define         BOMBERMAN_CLIENT_H
+
+#include        "../network/socket.h"
+#include        "../network/request.h"
+#include        "../common/args.h"
+#include        "../common/exits.h"
 
 void            intro();
 

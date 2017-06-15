@@ -1,4 +1,4 @@
-#include    "socket_util.h"
+#include    "socket.h"
 
 #ifndef     __REQUEST_H__
 #define     __REQUEST_H__
@@ -32,6 +32,7 @@
 #include    <stdlib.h>
 #include    <stdio.h>
 #include    <unistd.h>
+#include    "../common/exits.h"
 
 typedef struct client_s
 {

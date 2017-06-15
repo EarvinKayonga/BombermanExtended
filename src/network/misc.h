@@ -6,7 +6,7 @@
 #include    <sys/ioctl.h>
 #include    <unistd.h>
 
-#include    "../network/request.h"
+#include    "request.h"
 
 int         server_sockfd;
 int         client_sockfd;
