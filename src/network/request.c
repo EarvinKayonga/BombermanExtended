@@ -31,7 +31,8 @@ void        init_request(request_t *source, char *filename)
         source->clients[i].posy = -1;
     }
 
-    file = fopen(filename, "r");
+    if (!(file = fopen(filename, "r")))
+        panic("An Error occured while retrieving the map");
     row = 0;
     col = 0;
     while (1)
