@@ -25,7 +25,7 @@ clean:
 	rm -rf *.o
 
 fclean: clean
-	rm -rf bin/server bin/client doc/html
+	rm -rf bin/server bin/client doc/html doc/latex doc/*.db
 
 re: fclean all
 
