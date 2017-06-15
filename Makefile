@@ -30,10 +30,11 @@ fclean: clean
 re: fclean all
 
 doc:
-	doxygen Doxyfile
+	docker build -t doxygen-builder -f doc.docker .
+	docker run -v `pwd`:/lab doxygen-builder
 
 debian:
 	docker build -t deb-builder -f distribution/debian/Dockerfile .
 	docker run --rm --name deb-builder -v `pwd`/distribution/debian/deb:/lab deb-builder
 
-.PHONY: all
+.PHONY: all doc

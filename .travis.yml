@@ -54,3 +54,4 @@ script:
 after_script:
   - make debian
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo dpkg -i distribution/debian/deb/bomberman.deb && which client && which server; fi
+  - make doc
