@@ -30,7 +30,7 @@ fclean: clean
 re: fclean all
 
 doc:
-	doxygen
+	doxygen Doxyfile
 
 debian:
 	docker build -t deb-builder -f distribution/debian/Dockerfile .
