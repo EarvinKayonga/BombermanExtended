@@ -60,9 +60,9 @@ int             server(int socket) {
     struct      sockaddr_in addr;
 
     init_map(bombs);
-    printf("Server is running ...\n");
     fflush(stdout);
     init_request(&server_request, "maps/map.txt");
+    printf("Server is running ...\n");
     while (1)
     {
         FD_ZERO(&set);

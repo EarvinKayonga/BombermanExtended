@@ -1,5 +1,5 @@
 CC      =   gcc
-CFLAGS  =   -std=gnu99 -W -Wall -ansi -pedantic -lpthread
+CFLAGS  =   -std=gnu99 -W -Wall -ansi -pedantic
 
 ifdef ComSpec
 OFLAGS  =   -lws2_32 -lwsock32
